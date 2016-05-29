@@ -16,11 +16,9 @@
 ;(function (window) {
     function Ruler(config) {
         var that = this;
-        var dafaults = {
+        var dafaults = {        
             // 刻度文本
             lineText   : '.ruler-text',
-            // 刻度列表
-            lineList   : '.ruler-list',
             // 拖动按钮
             btnNode    : '.ruler-btn-point',
             // 刻度轴
@@ -45,12 +43,7 @@
             var scaleLength = that.config.scale.length;
             var scaleWidth = $(that.config.lineNode).width();
 
-            that.doms.lineText = $(that.config.lineText);
-            that.doms.lineList = $(that.config.lineList);
-            that.doms.btnNode = $(that.config.btnNode);
             that.doms.lineNode = $(that.config.lineNode);
-            that.doms.followNode = $(that.config.followNode);
-
             that.datas = {
                 tmp : null,
                 // 计算器刻度值
@@ -64,7 +57,10 @@
                 // 计算器刻度宽度 / 2
                 partWidth : (scaleWidth / (scaleLength - 1)) / 2,          
             };
-            this.setScale();
+            this.setScale(function(){
+                that.doms.btnNode = $(that.config.btnNode);
+                that.doms.followNode = $(that.config.followNode);
+            });
             that.bind();
             that.datas.pathArr = this.setPath();
             that.setDefault(that.config.position);
@@ -72,15 +68,24 @@
         /**
          * 设置.scale的内容
          */
-        setScale: function(){
+        setScale: function(setScaleAfter){
             var that = this;
             var nodeTmp = [];
+            nodeTmp.push(
+                '<div class="ruler-follow"></div>',
+                '<div class="ruler-btn-point"><span class="ruler-btn"></span></div>',
+                '<ul class="ruler-list">'
+            );
             for(var i=0;i<that.datas.rulerLength;i++) {
                 nodeTmp.push(
                     '<li class="item" style="width:'+ that.datas.averageWidth +'px">' + that.config.scale[i] + '</li>'
                 );
             }
-            that.doms.lineList.append(nodeTmp.join(''));
+            nodeTmp.push(
+                '</ul>'
+            );
+            that.doms.lineNode.append(nodeTmp.join(''));
+            setScaleAfter();
         },
         /**
          * 设置默认位置
