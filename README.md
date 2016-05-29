@@ -11,7 +11,7 @@
 >js
 
         var rule = new Ruler({
-        scale    : [1,5,10,20,50],
-        position : 4,
-        callBack : function(p){...}
+                scale    : [1,5,10,20,50],
+                position : 4,
+                callBack : function(p){...}
         });
