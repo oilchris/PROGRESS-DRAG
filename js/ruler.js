@@ -33,7 +33,7 @@
         };
         that.config = $.extend(dafaults, config);
         that.doms = {};
-        this.datas = {};
+        that.datas = {};
         that.init();
     };
     Ruler.prototype = {
@@ -57,12 +57,12 @@
                 // 计算器刻度宽度 / 2
                 partWidth : (scaleWidth / (scaleLength - 1)) / 2,          
             };
-            this.setScale(function(){
+            that.setScale(function(){
                 that.doms.btnNode = $(that.config.btnNode);
                 that.doms.followNode = $(that.config.followNode);
             });
             that.bind();
-            that.datas.pathArr = this.setPath();
+            that.datas.pathArr = that.setPath();
             that.setDefault(that.config.position);
         },
         /**
