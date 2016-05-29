@@ -33,7 +33,7 @@
         };
         that.config = $.extend(dafaults, config);
         that.doms = {};
-        this.datas = {};
+        that.datas = {};
         that.init();
     };
     Ruler.prototype = {
@@ -62,7 +62,7 @@
                 that.doms.followNode = $(that.config.followNode);
             });
             that.bind();
-            that.datas.pathArr = this.setPath();
+            that.datas.pathArr = that.setPath();
             that.setDefault(that.config.position);
         },
         /**
