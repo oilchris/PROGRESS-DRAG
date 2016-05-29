@@ -57,7 +57,7 @@
                 // 计算器刻度宽度 / 2
                 partWidth : (scaleWidth / (scaleLength - 1)) / 2,          
             };
-            this.setScale(function(){
+            that.setScale(function(){
                 that.doms.btnNode = $(that.config.btnNode);
                 that.doms.followNode = $(that.config.followNode);
             });
