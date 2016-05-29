@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>progress-ruler-drag</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=750,user-scalable=no">
+    <link type="text/css" rel="stylesheet" href="css/delta.css">
+    <link type="text/css" rel="stylesheet" href="css/ruler.css">
+</head>
+<body>
+
+<div class="ruler-bx">
+    <div class="ruler-text"></div>
+    <div class="ruler-line">
+        <div class="ruler-follow"></div>
+        <div class="ruler-btn-point"><span class="ruler-btn"></span></div>
+        <ul class="ruler-list"></ul>
+    </div>
+</div>
+
+<script src="js/zepto.js"></script>
+<script src="js/zepto.fx.js"></script>
+<script src="js/zepto.event.js"></script>
+<script src="js/ruler.js"></script>
+<script>
+var rule = new Ruler({
+    scale    : ['1万','5万','10万','20万','50万','100万','500万'],
+    position : 4,
+    callBack : function(p){
+        var stock = 3.24;
+        var asset;
+        switch(p.val){
+            case '1万':
+            asset = (10000 / stock);
+            break;
+
+            case '5万':
+            asset = (50000 / stock);
+            break;  
+
+            case '10万':
+            asset = (100000 / stock);
+            break;  
+
+            case '20万':
+            asset = (200000 / stock);
+            break;  
+
+            case '50万':
+            asset = (500000 / stock);
+            break; 
+
+            case '100万':
+            asset = (1000000 / stock);
+            break; 
+
+            case '500万':
+            asset = (5000000 / stock);
+            break; 
+        }
+        $(this.lineText).text('¥' + p.val + '元 可拥有'+ parseInt(asset).toLocaleString() + '股 中国银行')
+    }
+});
+</script>
+</body>
+</html>
